@@ -1,9 +1,38 @@
+//Samantha Driving
+//Marian Typing
 
 // TODO: DEFINE ANY VARIABLES HERE
-
+var newNumber = "";
+var displayNumber = '0';
 
 
 // TODO: DEFINE YOUR FUNCTIONS HERE
+function buildNumber(value) {
+    displayNumber = newNumber += value;
+    return displayNumber;
+  }
+
+function add(val1, val2) {
+  var sum = val1 + val2;
+  return sum;
+  console.log(sum);
+}
+function sub(val1, val2) {
+  var diff = val1 + val2;
+  return diff;
+  console.log(diff);
+}
+function div(val1, val2) {
+  var quot = val1 + val2;
+  return quot;
+  console.log(quot);
+}
+function times(val1, val2) {
+  var prod = val1 + val2;
+  return prod;
+  console.log(prod);
+}
+
 
 
 
@@ -17,9 +46,47 @@
  */
 function handleButtonClick(buttonValue) {
 
-    // TODO: WRITE SOME OF YOUR CODE HERE
+    switch (buttonValue) {
+        case "+":
 
+            break;
+
+        case "-":
+
+            break;
+
+        case "x":
+
+            break;
+
+        case "/":
+
+            break;
+
+        case "=":
+
+            break;
+
+        case ".":
+          if (displayNumber.includes(".")) {
+            console.log("in");
+            break;
+          }
+          buildNumber(buttonValue);
+            break;
+
+        default:
+          buildNumber(buttonValue);
+
+    }
+          updateDisplay(newNumber);
 }
+
+
+
+
+
+
 
 
 
@@ -107,7 +174,7 @@ document.querySelector('.run-tests').addEventListener('click', function() {
         console.log('All tests have run. (If you see no errors, they all passed!)');
         updateDisplay('');
 
-    } catch(e) {
+    } catch (e) {
         console.error('There was a syntax error during the test run:', e);
     }
 });
@@ -127,6 +194,7 @@ document.querySelector('.run-tests').addEventListener('click', function() {
 });
 
 var display = document.querySelector('.display figure');
+
 function updateDisplay(text) {
     display.innerText = text;
 }
