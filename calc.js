@@ -7,46 +7,6 @@ function buildNumber(value) {
     current = Number(displayNumber); //saves the displayNumber as current.
 }
 
-function add(val1, val2) {
-    var sum = val1 + val2;
-    return sum;
-    console.log(sum);
-}
-
-function sub(val1, val2) {
-    var diff = val1 + val2;
-    return diff;
-    console.log(diff);
-}
-
-function div(val1, val2) {
-    var quot = val1 + val2;
-    return quot;
-    console.log(quot);
-}
-
-function times(val1, val2) {
-    var prod = val1 + val2;
-    return prod;
-    console.log(prod);
-}
-//if a number is passed in, process based on most recent operator value.
-// function runAppropriateFunction() {
-//   previous = current;
-//
-//   if (operator = "+") {
-//     displayNumber = add(previous, current);
-//   } else if (operator = "-") {
-//     displayNumber = sub(previous, current);
-//   } else if (operator = "/") {
-//     displayNumber = div(previous, current);
-//   } else if (operator = "*") {
-//     displayNumber = times(previous, current);
-//   } else {
-//     updateDisplay(displayNumber);
-//   }
-//   updateDisplay(displayNumber);
-//}
 /**
  * 		EDIT ME!
  *
@@ -63,6 +23,12 @@ var operator = "";
 var flag = false;
 
 function handleButtonClick(buttonValue) {
+    if (buttonValue === "=") {
+      handleButtonClick(operator);
+      updateDisplay(current);
+      flag = false;
+      return;
+    }
     // if something requiring a running total printout is entered,
     if (buttonValue === "+" || buttonValue === "-" ||
         buttonValue === "/" || buttonValue === "*") {
@@ -86,7 +52,7 @@ function handleButtonClick(buttonValue) {
                     break;
                 case "/":
                     console.log("in division case");
-                    current /= previous;
+                    current = previous/current;
                     displayNumber = "" + current;
                     updateDisplay(current);
                     flag = false;
