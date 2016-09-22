@@ -1,41 +1,52 @@
 //Samantha Driving
 //Marian Typing
 
-// TODO: DEFINE ANY VARIABLES HERE
-var newNumber = "";
-var displayNumber = '0';
-
-
-// TODO: DEFINE YOUR FUNCTIONS HERE
 function buildNumber(value) {
-    displayNumber = newNumber += value;
-    return displayNumber;
-  }
+    displayNumber = value; //build string
+    previous = current;
+    current = Number(displayNumber); //saves the displayNumber as current.
+}
 
 function add(val1, val2) {
-  var sum = val1 + val2;
-  return sum;
-  console.log(sum);
+    var sum = val1 + val2;
+    return sum;
+    console.log(sum);
 }
+
 function sub(val1, val2) {
-  var diff = val1 + val2;
-  return diff;
-  console.log(diff);
+    var diff = val1 + val2;
+    return diff;
+    console.log(diff);
 }
+
 function div(val1, val2) {
-  var quot = val1 + val2;
-  return quot;
-  console.log(quot);
+    var quot = val1 + val2;
+    return quot;
+    console.log(quot);
 }
+
 function times(val1, val2) {
-  var prod = val1 + val2;
-  return prod;
-  console.log(prod);
+    var prod = val1 + val2;
+    return prod;
+    console.log(prod);
 }
-
-
-
-
+//if a number is passed in, process based on most recent operator value.
+// function runAppropriateFunction() {
+//   previous = current;
+//
+//   if (operator = "+") {
+//     displayNumber = add(previous, current);
+//   } else if (operator = "-") {
+//     displayNumber = sub(previous, current);
+//   } else if (operator = "/") {
+//     displayNumber = div(previous, current);
+//   } else if (operator = "*") {
+//     displayNumber = times(previous, current);
+//   } else {
+//     updateDisplay(displayNumber);
+//   }
+//   updateDisplay(displayNumber);
+//}
 /**
  * 		EDIT ME!
  *
@@ -44,43 +55,120 @@ function times(val1, val2) {
  *
  * @param  {String} buttonValue   The value of the button that was clicked on, for example "6" or "+"
  */
+
+var current = 0;
+var previous;
+var displayNumber = "";
+var operator = "";
+var flag = false;
+
 function handleButtonClick(buttonValue) {
+    // if something requiring a running total printout is entered,
+    if (buttonValue === "+" || buttonValue === "-" ||
+        buttonValue === "/" || buttonValue === "*") {
+        // check to see if there is a previous operator that was entered
+        if (flag === true) {
+            //if there was a previous operator, use it to process the last two numbers
+            switch (operator) {
+                case "+":
+                    console.log("in addition case");
+                    current += previous;
+                    displayNumber = "" + current;
+                    updateDisplay(current);
+                    flag = false;
+                    break;
+                case "-":
+                    console.log("in subtraction case");
+                    current -= previous;
+                    displayNumber = "" + current;
+                    updateDisplay(current);
+                    flag = false;
+                    break;
+                case "/":
+                    console.log("in division case");
+                    current /= previous;
+                    displayNumber = "" + current;
+                    updateDisplay(current);
+                    flag = false;
+                    break;
+                case "*":
+                    console.log("in multiplication case");
+                    current *= previous;
+                    displayNumber = "" + current;
+                    updateDisplay(current);
+                    flag = false;
+                    break;
+                default:
+                    console.log("in default case");
+                    break;
+            }
+        }
+        //set the flag to true and update operator.
+        flag = true;
 
-    switch (buttonValue) {
-        case "+":
+        operator = buttonValue;
+        updateDisplay(displayNumber);
+        return; /* get operator value and stop. */
 
-            break;
 
-        case "-":
 
-            break;
+    } else if (buttonValue === "clear") {
+        displayNumber = "0";
+        previous = 0;
+        current = 0;
+        updateDisplay(displayNumber);
+        return; /* clear variables and display and stop. */
 
-        case "x":
-
-            break;
-
-        case "/":
-
-            break;
-
-        case "=":
-
-            break;
-
-        case ".":
-          if (displayNumber.includes(".")) {
-            console.log("in");
-            break;
-          }
-          buildNumber(buttonValue);
-            break;
-
-        default:
-          buildNumber(buttonValue);
+    } else {
+        buildNumber(buttonValue);
+        updateDisplay(displayNumber);
 
     }
-          updateDisplay(newNumber);
 }
+// function handleButtonClick(buttonValue) {
+//     switch (buttonValue) {
+//         case "+":
+//           operator = "+"; // saves the operator to determine what to do with upcoming number.
+//
+//           current = displayNumber;
+//           displayNumber = "";
+//           updateDisplay(displayNumber);
+//             break;
+//
+//         case "-":
+//
+//             break;
+//
+//         case "x":
+//
+//             break;
+//
+//         case "/":
+//
+//             break;
+//
+//         case "=":
+//
+//             break;
+//
+//         case ".":
+//           if (displayNumber.includes(".")) { //if already a decimal point, do not add to the string.
+//             break;
+//           }
+//           buildNumber(buttonValue);
+//             break;
+//
+//         default:
+//           buildNumber(buttonValue);
+//         }
+//         runAppropriateFunction();
+//
+//         console.log("buttonValue:" + buttonValue);
+//         console.log("displayNumber:" + displayNumber);
+//         console.log("previous:" + previous);
+//         console.log("current:" + current);
+//         updateDisplay(displayNumber);
+// }
 
 
 
