@@ -1,11 +1,10 @@
 //Samantha Driving
 //Marian Typing
-
-function buildNumber(value) {
-    displayNumber = value; //build string
-    previous = current;
-    current = Number(displayNumber); //saves the displayNumber as current.
-}
+var current = 0;
+var previous;
+var displayNumber = "";
+var operator = "";
+var flag = false;
 
 /**
  * 		EDIT ME!
@@ -16,22 +15,22 @@ function buildNumber(value) {
  * @param  {String} buttonValue   The value of the button that was clicked on, for example "6" or "+"
  */
 
-var current = 0;
-var previous;
-var displayNumber = "";
-var operator = "";
-var flag = false;
+function buildNumber(value) {
+    displayNumber = value; //build string
+    previous = current;
+    current = Number(displayNumber); //saves the displayNumber as current.
+}
 
 function handleButtonClick(buttonValue) {
     if (buttonValue === "=") {
-      handleButtonClick(operator);
-      updateDisplay(current);
-      flag = false;
-      return;
+        handleButtonClick(operator);
+        updateDisplay(current);
+        flag = false;
+        return;
     }
     // if something requiring a running total printout is entered,
     if (buttonValue === "+" || buttonValue === "-" ||
-        buttonValue === "/" || buttonValue === "*") {
+        buttonValue === "/" || buttonValue === "x") {
         // check to see if there is a previous operator that was entered
         if (flag === true) {
             //if there was a previous operator, use it to process the last two numbers
@@ -52,14 +51,14 @@ function handleButtonClick(buttonValue) {
                     break;
                 case "/":
                     console.log("in division case");
-                    current = previous/current;
+                    current = previous / current;
                     displayNumber = "" + current;
                     updateDisplay(current);
                     flag = false;
                     break;
-                case "*":
+                case "x":
                     console.log("in multiplication case");
-                    current *= previous;
+                    current = previous * current;
                     displayNumber = "" + current;
                     updateDisplay(current);
                     flag = false;
@@ -91,58 +90,6 @@ function handleButtonClick(buttonValue) {
 
     }
 }
-// function handleButtonClick(buttonValue) {
-//     switch (buttonValue) {
-//         case "+":
-//           operator = "+"; // saves the operator to determine what to do with upcoming number.
-//
-//           current = displayNumber;
-//           displayNumber = "";
-//           updateDisplay(displayNumber);
-//             break;
-//
-//         case "-":
-//
-//             break;
-//
-//         case "x":
-//
-//             break;
-//
-//         case "/":
-//
-//             break;
-//
-//         case "=":
-//
-//             break;
-//
-//         case ".":
-//           if (displayNumber.includes(".")) { //if already a decimal point, do not add to the string.
-//             break;
-//           }
-//           buildNumber(buttonValue);
-//             break;
-//
-//         default:
-//           buildNumber(buttonValue);
-//         }
-//         runAppropriateFunction();
-//
-//         console.log("buttonValue:" + buttonValue);
-//         console.log("displayNumber:" + displayNumber);
-//         console.log("previous:" + previous);
-//         console.log("current:" + current);
-//         updateDisplay(displayNumber);
-// }
-
-
-
-
-
-
-
-
 
 /** **************************************************************
  * These are our tests. If any of them fail you will see a message
